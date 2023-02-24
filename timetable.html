@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <script src="TimeTable.js"></script>
     <style>
@@ -33,7 +33,7 @@
             margin: 10px;
             padding: 10px 20px;
             background-color: #00ffc4;
-            color: white;
+            color: black;
             border: none;
             border-radius: 3px;
             box-shadow: 1px 1px 3px grey;
@@ -83,9 +83,32 @@
             color: white;
             background: black;
         }
+        .course:nth-child(1) {
+            position: relative;
+        }
 
+        .delete-btn {
+            position: absolute;
+            left: -50px; /* Adjust as needed */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .context-menu {
+            position: absolute;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            padding: 5px;
+            z-index: 1000;
+        }
+
+        .context-menu div {
+            cursor: pointer;
+            padding: 5px;
+        }
 
     </style>
+    <title>Timetable Maker</title>
 
 </head>
 <body>
@@ -96,19 +119,20 @@
 
     </a>
 </h1>
-<center>
+<div style="text-align: center;">
     <h2>Timetable Maker</h2>
 
     <label for="courseNumber">Enter course number:</label>
     <input type="text" id="courseNumber">
     <button onclick="generateTimetable()">Generate Timetable</button>
+    <div id = "error"></div>
     <div id = "notfound"></div>
-    <div id="options"></div>
-</center>
-<table id="timetable">
+    <div id ="options"></div>
+</div>
+<table id = "timetable">
         <tr class = "info">
-            <th class="time">Time&Day</th>
-            <th class="monday">Mon</th>
+            <th class="time" >Time&Day</th>
+            <th class="monday" >Mon</th>
             <th class="tuesday">Tue</th>
             <th class="wednesday">Wed</th>
             <th class="thursday">Thu</th>

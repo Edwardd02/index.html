@@ -3782,6 +3782,15 @@ const timetableData = {
 }//811-818, 750
 
 const times = [];
+// 获取 table 元素
+// 获取 table 元素
+// 获取 table 元素
+
+
+// 监听鼠标右键按下事件
+
+
+
 // Define a function to generate the timetable
 function generateTimetable() {
     const timetable = document.getElementById('options');
@@ -3805,33 +3814,87 @@ function generateTimetable() {
 
             }
         }
-
     // If the timetable data is not found, display an error message
     if (allInfoArray.length === 0) {
         const timetableDiv = document.getElementById("notfound");
         timetableDiv.innerHTML = "<p>Timetable not found. Please enter a valid course number.</p>";
-    }
-    else if(allInfoArray.length === 1)
-    {
-      printAllInfo(timetableData, allInfoArray[0]);
-    }
-    else
-    {
-      for(let i = 0; i < allInfoArray.length; i++)
-      {
-        selectAllInfo(timetableData, allInfoArray[i]);
-      }
+    } else if (allInfoArray.length === 1) {
+        printAllInfo(timetableData, allInfoArray[0]);
+    } else {
+        for (let i = 0; i < allInfoArray.length; i++) {
+            selectAllInfo(timetableData, allInfoArray[i]);
+        }
     }
 }
+function deleteAndZoom(){
 
+let hasMenu = false;
+window.addEventListener("contextmenu", e => e.preventDefault());
+let tableID = document.getElementById("timetable");//it was working in html file, but now it's null
+console.log(tableID);
+
+// 监听鼠标右键按下事件
+tableID.addEventListener("mousedown", function(e) {
+    // 如果是鼠标右键按下
+    var target = e.target;
+
+    // 如果是 th 元素且有内容
+    if (target.tagName === "TH" && target.innerHTML.trim() !== "") {
+        // 创建一个 div 元素作为右键菜单
+        var contextMenu = document.createElement("div");
+        contextMenu.className = "context-menu";
+        contextMenu.id = "rightClickDelete";
+
+        // 创建菜单项
+        var menuItem = document.createElement("div");
+        menuItem.innerHTML = "Delete";
+        menuItem.addEventListener("click", function() {
+            // TODO: 实现菜单项的功能
+        });
+        if(hasMenu)
+        {
+            document.getElementById("rightClickDelete").remove();
+            // 为了避免多次创建菜单，还需要在隐藏菜单时将菜单从 body 中移除
+            hasMenu = false;
+        }
+        else{
+            if (e.button === 2) {
+                // 获取鼠标右键按下的元素
+
+
+                // 将菜单项添加到菜单中
+                contextMenu.appendChild(menuItem);
+
+                // 将菜单添加到 body 中
+                document.body.appendChild(contextMenu);
+
+                // 设置菜单的位置
+                contextMenu.style.left = e.clientX + "px";
+                contextMenu.style.top = e.clientY + "px";
+
+                // 阻止默认的右键菜单弹出
+                hasMenu = true;
+                // 监听鼠标右键抬起事件，当抬起时隐藏菜单
+            }
+            document.addEventListener("click", function() {
+                document.getElementById("rightClickDelete").remove();
+                hasMenu = false;
+            }, { once: true });
+        }
+    }
+});}
 function printAllInfo(timetableData, timetableInfo) {
-
 
     timetableInfo = timetableData[timetableInfo];
     times.push(timetableInfo.time)
     const result = sortAndCheckTimeConflicts(times);
+    const conflict = document.getElementById('error');
     console.log(result.sortedTimes);
-    console.log(result.hasConflict);
+    if (result.hasConflict) {
+        conflict.innerHTML = "<p>There is a time conflict</p>";
+    } else {
+        conflict.innerHTML = '';
+    }
     const newCourse = document.createElement('tr');
     newCourse.className = "course";
     document.getElementById('timetable').appendChild(newCourse);
@@ -3850,26 +3913,17 @@ function printAllInfo(timetableData, timetableInfo) {
     const date = timetableInfo.time.split(" ")[0];
     timeTd.innerHTML = `<p> ${timetableInfo.time.split(" ")[1]}</p>`
     newCourse.appendChild(timeTd);
-    for(let i = 0; i < date.length; i++)
-    {
-        if(date[i] === 'M')
-        {
+    for (let i = 0; i < date.length; i++) {
+        if (date[i] === 'M') {
             addInto(timeTdM, timetableData, timetableInfo);
-        }
-        else if(date[i] === 'W')
-        {
+        } else if (date[i] === 'W') {
             addInto(timeTdW, timetableData, timetableInfo);
-        }
-        else if(date[i] === 'F')
-        {
+        } else if (date[i] === 'F') {
             addInto(timeTdF, timetableData, timetableInfo);
-        }
-        else if(date[i] === 'T')
-        {
-            if(date[i + 1] === 'h') {
+        } else if (date[i] === 'T') {
+            if (date[i + 1] === 'h') {
                 addInto(timeTdTh, timetableData, timetableInfo);
-            }
-            else{
+            } else {
                 addInto(timeTdT, timetableData, timetableInfo);
             }
         }
@@ -3879,12 +3933,11 @@ function printAllInfo(timetableData, timetableInfo) {
     newCourse.appendChild(timeTdW);
     newCourse.appendChild(timeTdTh);
     newCourse.appendChild(timeTdF);
-    for(let i = 0; i < result.sortedTimes.length; i++){
-        if(timetableInfo.time === result.sortedTimes[i].toString())
-        {
-            var row1 = document.getElementById("timetable").rows[result.sortedTimes.length];
+    for (let i = 0; i < result.sortedTimes.length; i++) {
+        if (timetableInfo.time === result.sortedTimes[i].toString()) {
+            let row1 = document.getElementById("timetable").rows[result.sortedTimes.length];
 
-            var row2 = document.getElementById("timetable").rows[i + 1];
+            let row2 = document.getElementById("timetable").rows[i + 1];
             // Insert row1 before row2
             row2.parentNode.insertBefore(row1, row2);
             return;
@@ -3893,9 +3946,9 @@ function printAllInfo(timetableData, timetableInfo) {
     //setCookie("newCourse", newCourse.innerHTML, 7);Cookie problem
 
 
-
 }
-function addInto(timeTd, timetableData, timetableInfo){
+
+function addInto(timeTd, timetableData, timetableInfo) {
 
     if (timetableInfo.gened === '') {
         timeTd.innerHTML = `<p> ${timetableInfo.courseName}</p>
@@ -3912,16 +3965,19 @@ function addInto(timeTd, timetableData, timetableInfo){
                             <p> ${timetableInfo.gened}</p>`;
     }
 }
+
 function selectAllInfo(timetableData, timetableInfo) {
-  const newButton = document.createElement('button');
-  newButton.innerHTML = `<p> ${timetableData[timetableInfo].courseName}</p>
+    const newButton = document.createElement('button');
+    newButton.innerHTML = `<p> ${timetableData[timetableInfo].courseName}</p>
+                           <p> ${timetableData[timetableInfo].time}</p>
                          <p>${timetableInfo}</p>`;
-  newButton.id = timetableInfo;
-  newButton.addEventListener('click', selection.bind(newButton));
-  const timetable = document.getElementById('options');
-  timetable.appendChild(newButton);
+    newButton.id = timetableInfo;
+    newButton.addEventListener('click', selection.bind(newButton));
+    const timetable = document.getElementById('options');
+    timetable.appendChild(newButton);
 }
-function selection(){
+
+function selection() {
     const courseInfo = this.id;
     const courseInfoString = courseInfo.toString();
     console.log(courseInfoString);
@@ -3929,16 +3985,18 @@ function selection(){
     const timetable = document.getElementById('options');
     timetable.innerHTML = '';
 }
+
 function sortAndCheckTimeConflicts(times) {
+
     // Convert input times to objects with day and time properties
-    const dayAbbrevs = { "M": 0, "T": 1, "W": 2, "Th": 3, "F": 4 };
+    const dayAbbrevs = {"M": 0, "T": 1, "W": 2, "h": 3, "F": 4};
     const timeObjects = times.map(time => {
         const [days, timespan] = time.split(" ");
         const [startTime, endTime] = timespan.split("-");
         const [startHour, startMin] = startTime.split(":").map(num => parseInt(num));
         const [endHour, endMin] = endTime.split(":").map(num => parseInt(num));
         return {
-            days: days.split("").map(day => dayAbbrevs[day]),
+            days: days.split("").map(day => day === "h" ? 3 : dayAbbrevs[day]),
             start: startHour * 60 + startMin,
             end: endHour * 60 + endMin
         };
@@ -3946,7 +4004,6 @@ function sortAndCheckTimeConflicts(times) {
 
     // Sort time objects by start time and then by day
     timeObjects.sort((a, b) => a.start - b.start);
-    timeObjects.sort((a, b) => a.days[0] - b.days[0]);
 
     // Check for conflicts
     let hasConflict = false;
@@ -3964,4 +4021,4 @@ function sortAndCheckTimeConflicts(times) {
         hasConflict
     };
 }
-
+deleteAndZoom();

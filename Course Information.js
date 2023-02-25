@@ -16,44 +16,43 @@ async function launchPuppeteer() {
         inputData.push(classData.toString());
 
     }
-    ;
+
 
     for (let i = 0; i < inputData.length; i += 11) {
         // Split the block into inputData
 
-        let j;
         // Extract the relevant information from the inputData
 
         const courseCode = inputData[2 + i];
-        const courseNum = inputData[2 + i];
-        const subject = inputData[1 + i];
+        // const courseNum = inputData[2 + i];
+        // const subject = inputData[1 + i];
         const courseName = inputData[3 + i];
-        const credits = inputData[4 + i];
-        const time = inputData[5 + i];
-        const professor = inputData[6 + i];
-        const crn = inputData[7 + i];
-        const gened = inputData[8 + i];
-        const prior = inputData[9 + i];
-        const specialInfo = inputData[10 + i];
+        // const credits = inputData[4 + i];
+        // const time = inputData[5 + i];
+        // const professor = inputData[6 + i];
+        // const crn = inputData[7 + i];
+        // const gened = inputData[8 + i];
+        // const prior = inputData[9 + i];
+        // const specialInfo = inputData[10 + i];
         // Determine if this course is a Gened course
-        department += courseCode;
+        //department += courseName + "\", \"";
         // Add the course to the timetableData object
-        timetableData[courseNum] = {
-            "subject": subject,
+        timetableData[courseName] = {
+            // "subject": subject,
             "courseCode": courseCode,
-            "courseName": courseName,
-            "credits": credits,
-            "time": time,
-            "professor": professor,
-            "crn": crn,
-            "gened": gened,
-            "prior": prior,
-            "specialInfo": specialInfo
+            // "courseName": courseName,
+            // "credits": credits,
+            // "time": time,
+            // "professor": professor,
+            // "crn": crn,
+            // "gened": gened,
+            // "prior": prior,
+            // "specialInfo": specialInfo
         };
 
     }
 
-    console.dir(department);
+    console.log(timetableData);
     await browser.close();
     //console.log(timetableData);
 

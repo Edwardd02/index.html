@@ -3871,16 +3871,16 @@ function printAllInfo(timetableData, timetableInfo) {
     newCourse.appendChild(timeTd);
     for (let i = 0; i < date.length; i++) {
         if (date[i] === 'M') {
-            addInto(timeTdM, timetableData, timetableInfo);
+            addInto(timeTdM, timetableInfo);
         } else if (date[i] === 'W') {
-            addInto(timeTdW, timetableData, timetableInfo);
+            addInto(timeTdW, timetableInfo);
         } else if (date[i] === 'F') {
-            addInto(timeTdF, timetableData, timetableInfo);
+            addInto(timeTdF, timetableInfo);
         } else if (date[i] === 'T') {
             if (date[i + 1] === 'h') {
-                addInto(timeTdTh, timetableData, timetableInfo);
+                addInto(timeTdTh, timetableInfo);
             } else {
-                addInto(timeTdT, timetableData, timetableInfo);
+                addInto(timeTdT, timetableInfo);
             }
         }
     }
@@ -3905,7 +3905,7 @@ function printAllInfo(timetableData, timetableInfo) {
 }
 
 //this is for function printAllInfo, it adds the necessary info to the child of timetable
-function addInto(timeTd, timetableData, timetableInfo) {
+function addInto(timeTd, timetableInfo) {
 
     if (timetableInfo.gened === '') {
         timeTd.innerHTML = `<p> ${timetableInfo.courseName}</p>
@@ -3975,7 +3975,7 @@ function sortAndCheckTimeConflicts(times) {
         if (curr.days[0] === next.days[0] && curr.end >= next.start) {
             hasConflict = true;
             break;
-            //TODO: a bug will happen if the first one are not the same date
+            //TODO: a bug will happen if the first one are not the same date, refer to days[0]
         }
     }
     return {
@@ -3984,17 +3984,18 @@ function sortAndCheckTimeConflicts(times) {
     };
 }
 
-let hasMenu = false;
+let hasMenu, hasZoomedIn = false;
 window.addEventListener("contextmenu", e => e.preventDefault());
 let table = document.getElementById("timetable");//it was working in html file, but now it's null
 
 // 监听鼠标右键按下事件
 table.addEventListener("mousedown", function (e) {
     // 如果是鼠标右键按下
+    //TODO: when mouse move to here, change it to a hand
     const target = e.target;
 
 
-    if ((target.innerHTML.trim() !== "")) {
+    if ((target.innerHTML.trim() !== "" && !hasZoomedIn)) {
         // 创建一个 div 元素作为右键菜单
         const contextMenu = document.createElement("div");
         contextMenu.className = "context-menu";
@@ -4002,7 +4003,7 @@ table.addEventListener("mousedown", function (e) {
 
         // 创建菜单项
         const menuItem = document.createElement("div");
-        menuItem.innerHTML = `<p id = "deleteAll">Delete All</p><p id = "deleteAll">Delete This</p>`;
+        menuItem.innerHTML = `<p id = "deleteAll">Delete All</p>`;//<p id = "deleteThis">Delete This</p>
         menuItem.children.item(0).addEventListener("click", function () {
             if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
@@ -4033,26 +4034,26 @@ table.addEventListener("mousedown", function (e) {
 
             }
         });
-        menuItem.children.item(1).addEventListener("click", function () {
-            if (document.getElementById("rightClickDelete") !== null) {
-                document.getElementById("rightClickDelete").remove();
-            }
-            hasMenu = false;
-            var parentElement = target;
-            while (parentElement && parentElement.tagName !== "TH") {//whatever target is, find the parent of is which is tr so the whole line would be deleted
-                parentElement = parentElement.parentElement;
-            }
-            if (parentElement && parentElement.tagName === "TH") {
-                if (parentElement.className === "time")//the first row is day&time, should not be removed
-                {
-                    const conflict = document.getElementById('timeqoute');
-                    conflict.innerHTML = "“Time will not slow down when you were trying to delete it” – Developer";
-                } else {
-                    parentElement.innerHTML = "";
-                }
-
-            }
-        });
+        // menuItem.children.item(1).addEventListener("click", function () {
+        //     if (document.getElementById("rightClickDelete") !== null) {
+        //         document.getElementById("rightClickDelete").remove();
+        //     }
+        //     hasMenu = false;
+        //     var parentElement = target;
+        //     while (parentElement && parentElement.tagName !== "TH") {//whatever target is, find the parent of is which is tr so the whole line would be deleted
+        //         parentElement = parentElement.parentElement;
+        //     }
+        //     if (parentElement && parentElement.tagName === "TH") {
+        //         if (parentElement.className === "time")//the first row is day&time, should not be removed
+        //         {
+        //             const conflict = document.getElementById('timeqoute');
+        //             conflict.innerHTML = "“Time will not slow down when you were trying to delete it” – Developer";
+        //         } else {
+        //             parentElement.innerHTML = "";
+        //         }
+        //
+        //     }
+        // });TODO: delete this
         if (hasMenu) {
             if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
@@ -4084,12 +4085,47 @@ table.addEventListener("mousedown", function (e) {
 
 
 });
-document.addEventListener("click", function () {
+
+
+document.addEventListener("click", function (e){
+    const target = e.target;
+    if (target.innerHTML.trim() !== "" && !hasZoomedIn && !hasMenu)
+    {
+        console.log("clicked");
+        var parentElement = target.parentElement;
+        while (parentElement && parentElement.tagName !== "TR") {//whatever target is, find the parent of is which is tr so the whole line whould be deleted
+            parentElement = parentElement.parentElement;
+        }
+        if (parentElement && parentElement.tagName === "TR") {
+            if (parentElement.id !== "doNotRemove") {//the first row is day&time
+                let dataInfo = parentElement.getAttribute('data-info');
+                dataInfo = timetableData[dataInfo];
+                const zoomInTable = document.createElement('table');
+                zoomInTable.className = "zoomInTable";
+                zoomInTable.id = "zoomInTable";
+                const zoomIn = document.createElement('tr');
+                zoomIn.className = "zoomIn";
+                const timeTd = document.createElement('td');
+                addInto(timeTd, dataInfo)
+                zoomIn.appendChild(timeTd);
+                zoomInTable.appendChild(zoomIn);
+                document.getElementById("timetableDiv").appendChild(zoomInTable);
+                hasZoomedIn = true;
+            }
+        }
+    }
+    else{
+        if (document.getElementById("zoomInTable") !== null) {
+            document.getElementById("zoomInTable").remove();
+        }
+        hasZoomedIn = false;
+    }
     if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
     }
     hasMenu = false;
-},)
+});
+
 document.getElementById("saveAsPDF").addEventListener("click", saveAsPDF);
 const specialElementHandlers = {
     '.no-saveAsPDF': function (element, renderer) {

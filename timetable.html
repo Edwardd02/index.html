@@ -69,8 +69,6 @@
             position: sticky;
             z-index: 1;
             top: 0;
-            height: 75px;
-
         }
 
         .time{
@@ -89,7 +87,7 @@
         }
 
         .delete-btn {
-            position: absolute;
+            position: center;
             left: -50px; /* Adjust as needed */
             top: 50%;
             transform: translateY(-50%);
@@ -106,6 +104,29 @@
         .context-menu div {
             cursor: pointer;
             padding: 5px;
+        }
+        .zoomIn{
+            border: 3px solid white;
+            text-align: center;
+
+
+            height: 125px;
+
+            background-color: black;
+            color: white;
+            position: sticky;
+            z-index: 1;
+            top: 0;
+        }
+        .zoomInTable
+        {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            height: 500px;
+            width : 500px;
         }
 
     </style>

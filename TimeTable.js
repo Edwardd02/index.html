@@ -3781,26 +3781,23 @@ const timetableData = {
     }
 }//811-818, 750
 
-const times = [];
-// 获取 table 元素
-// 获取 table 元素
-// 获取 table 元素
-
-
-// 监听鼠标右键按下事件
-
-
-
-// Define a function to generate the timetable
+const times = [];//this is for all the time we have so far, to avoid time conflict, we need it to be here
 function generateTimetable() {
+    if (document.getElementById("rightClickDelete") !== null){
+        document.getElementById("rightClickDelete").remove();
+    }
+    hasMenu = false;
     const timetable = document.getElementById('options');
     timetable.innerHTML = '';
+    //options are for when there are some courses has the same course number, need to make it empty before generation
+    document.getElementById("timeqoute").innerHTML = "";
     const userInput = document.getElementById("courseNumber").value;
     const courseNumber = userInput.replace(/\D/g, '');
-    console.log("Course number entered:", courseNumber);
+    //get the user Input then ignore all space or alpha
+    //TODO: search by course name
+    console.log("Course number entered:", courseNumber);//print user input
 
 
-    // If the timetable data is found, display it on the page
     let department = ['ACCT', 'ADV', 'AMST', 'ANTH', 'ARTU', 'ARTH', 'ASST', 'BIOL', 'CHEM', 'CHI', 'CMST', 'CSI', 'CIS', 'ECON', 'EDUC', 'ENG', 'ENVS', 'EURO', 'FREN', 'GEOG', 'GEOL', 'GERM', 'GREK', 'HIST', 'HUMA', 'IDIS', 'ITAL', 'JAPN', 'LATN', 'LGBT', 'LING', 'MATH', 'MUSC', 'PHIL', 'PHYS', 'POLS', 'PORT', 'PSYC', 'RELG', 'RUSS', 'SOCI', 'SPAN', 'SUST', 'THEA', 'WGST'];
     let onlineOrIn = ["(811)", "(812)", "(813)", "(814)", "(815)", "(816)", "(817)", "(818)", "(819)", "(750)", "(751)"];
     let allInfoArray = []
@@ -3814,82 +3811,37 @@ function generateTimetable() {
 
             }
         }
-    // If the timetable data is not found, display an error message
+    //Try to find the course with the course number
+
+    console.log("allInfoArray is: " + allInfoArray.length);
     if (allInfoArray.length === 0) {
         const timetableDiv = document.getElementById("notfound");
         timetableDiv.innerHTML = "<p>Timetable not found. Please enter a valid course number.</p>";
+        // If the timetable data is not found, display an error message
     } else if (allInfoArray.length === 1) {
+        const timetableDiv = document.getElementById("notfound");
+        timetableDiv.innerHTML = "";
         printAllInfo(timetableData, allInfoArray[0]);
+        //if There is only one course, print it
     } else {
         for (let i = 0; i < allInfoArray.length; i++) {
+            const timetableDiv = document.getElementById("notfound");
+            timetableDiv.innerHTML = "";
             selectAllInfo(timetableData, allInfoArray[i]);
         }
+        //Let user select when there is more course
     }
 }
-function deleteAndZoom(){
 
-let hasMenu = false;
-window.addEventListener("contextmenu", e => e.preventDefault());
-let tableID = document.getElementById("timetable");//it was working in html file, but now it's null
-console.log(tableID);
-
-// 监听鼠标右键按下事件
-tableID.addEventListener("mousedown", function(e) {
-    // 如果是鼠标右键按下
-    var target = e.target;
-
-    // 如果是 th 元素且有内容
-    if (target.tagName === "TH" && target.innerHTML.trim() !== "") {
-        // 创建一个 div 元素作为右键菜单
-        var contextMenu = document.createElement("div");
-        contextMenu.className = "context-menu";
-        contextMenu.id = "rightClickDelete";
-
-        // 创建菜单项
-        var menuItem = document.createElement("div");
-        menuItem.innerHTML = "Delete";
-        menuItem.addEventListener("click", function() {
-            // TODO: 实现菜单项的功能
-        });
-        if(hasMenu)
-        {
-            document.getElementById("rightClickDelete").remove();
-            // 为了避免多次创建菜单，还需要在隐藏菜单时将菜单从 body 中移除
-            hasMenu = false;
-        }
-        else{
-            if (e.button === 2) {
-                // 获取鼠标右键按下的元素
-
-
-                // 将菜单项添加到菜单中
-                contextMenu.appendChild(menuItem);
-
-                // 将菜单添加到 body 中
-                document.body.appendChild(contextMenu);
-
-                // 设置菜单的位置
-                contextMenu.style.left = e.clientX + "px";
-                contextMenu.style.top = e.clientY + "px";
-
-                // 阻止默认的右键菜单弹出
-                hasMenu = true;
-                // 监听鼠标右键抬起事件，当抬起时隐藏菜单
-            }
-            document.addEventListener("click", function() {
-                document.getElementById("rightClickDelete").remove();
-                hasMenu = false;
-            }, { once: true });
-        }
-    }
-});}
+//this is for print the course info on the timetable
 function printAllInfo(timetableData, timetableInfo) {
 
     timetableInfo = timetableData[timetableInfo];
     times.push(timetableInfo.time)
     const result = sortAndCheckTimeConflicts(times);
     const conflict = document.getElementById('error');
-    console.log(result.sortedTimes);
+    console.log("Time Table sorter: :" + result.sortedTimes);
+    console.log("time conflict: " + result.hasConflict);
     if (result.hasConflict) {
         conflict.innerHTML = "<p>There is a time conflict</p>";
     } else {
@@ -3947,7 +3899,7 @@ function printAllInfo(timetableData, timetableInfo) {
 
 
 }
-
+//this is for function printAllInfo, it adds the necessary info to the child of timetable
 function addInto(timeTd, timetableData, timetableInfo) {
 
     if (timetableInfo.gened === '') {
@@ -3966,26 +3918,30 @@ function addInto(timeTd, timetableData, timetableInfo) {
     }
 }
 
+
+//this is for select when there are more than one course have the same courseNum
 function selectAllInfo(timetableData, timetableInfo) {
     const newButton = document.createElement('button');
     newButton.innerHTML = `<p> ${timetableData[timetableInfo].courseName}</p>
                            <p> ${timetableData[timetableInfo].time}</p>
                          <p>${timetableInfo}</p>`;
-    newButton.id = timetableInfo;
+    newButton.className = timetableInfo;
     newButton.addEventListener('click', selection.bind(newButton));
     const timetable = document.getElementById('options');
     timetable.appendChild(newButton);
 }
-
+//for select clickListener
 function selection() {
-    const courseInfo = this.id;
+    const courseInfo = this.className;
     const courseInfoString = courseInfo.toString();
-    console.log(courseInfoString);
+    const options = document.getElementById('options');
+    options.innerHTML = '';
+    console.log("You selected: " + courseInfoString);
     printAllInfo(timetableData, courseInfoString);
-    const timetable = document.getElementById('options');
-    timetable.innerHTML = '';
-}
 
+
+}
+//this is for sort time
 function sortAndCheckTimeConflicts(times) {
 
     // Convert input times to objects with day and time properties
@@ -4001,24 +3957,23 @@ function sortAndCheckTimeConflicts(times) {
             end: endHour * 60 + endMin
         };
     });
-
+    console.log(timeObjects[0].days);
     // Sort time objects by start time and then by day
     timeObjects.sort((a, b) => a.start - b.start);
 
     // Check for conflicts
     let hasConflict = false;
-    for (let i = 0; i < timeObjects.length - 1; i++) {
-        const curr = timeObjects[i];
-        const next = timeObjects[i + 1];
-        if (curr.days[curr.days.length - 1] === next.days[0] && curr.end > next.start) {
-            hasConflict = true;
-            break;
+        for (let i = 0; i < timeObjects.length - 1; i++) {
+            const curr = timeObjects[i];
+            const next = timeObjects[i + 1];
+            if (curr.days[0] === next.days[0] && curr.end >= next.start){
+                        hasConflict = true;
+                        break;
+                        //TODO: a bug will happen if the first one are not the same date
         }
     }
-
     return {
         sortedTimes: timeObjects.map(time => `${time.days.map(day => Object.keys(dayAbbrevs).find(key => dayAbbrevs[key] === day)).join("")} ${Math.floor(time.start / 60).toString().padStart(1, "")}:${(time.start % 60).toString().padStart(2, "0")}-${Math.floor(time.end / 60).toString().padStart(2, "0")}:${(time.end % 60).toString().padStart(2, "0")}`),
         hasConflict
     };
 }
-deleteAndZoom();

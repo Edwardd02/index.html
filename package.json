@@ -2,6 +2,7 @@
   "name": "Web Development",
   "version": "1.0.0",
   "dependencies": {
+    "jspdf": "^2.5.1",
     "puppeteer": "^19.7.2"
   }
 }

@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <script src="TimeTable.js"></script>
+    <script type="module" src="TimeTableExtraFunction.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+
     <style>
         h1 {
             text-transform: uppercase;
@@ -72,7 +76,7 @@
 
         }
 
-        .time, .monday, .tuesday, .wednesday, .thursday, .friday {
+        .time{
             font-weight: bold;
             text-transform: uppercase;
             font-size: 18px;
@@ -125,22 +129,26 @@
     <label for="courseNumber">Enter course number:</label>
     <input type="text" id="courseNumber">
     <button onclick="generateTimetable()">Generate Timetable</button>
+    <button id="saveAsPDF">Save As PDF</button>
     <div id = "error"></div>
+    <div id = "timeqoute"></div>
     <div id = "notfound"></div>
     <div id ="options"></div>
 </div>
+<div id = "timetableDiv">
 <table id = "timetable">
-        <tr class = "info">
+    <thead id = "timetableHead">
+        <tr id = "doNotRemove" class = "info">
             <th class="time" >Time&Day</th>
-            <th class="monday" >Mon</th>
-            <th class="tuesday">Tue</th>
-            <th class="wednesday">Wed</th>
-            <th class="thursday">Thu</th>
-            <th class="friday">Fri</th>
+            <th class="time" >Mon</th>
+            <th class="time">Tue</th>
+            <th class="time">Wed</th>
+            <th class="time">Thu</th>
+            <th class="time">Fri</th>
         </tr>
-
+    </thead>
 </table>
-
+</div>
 <!-- Add more rows for each time slot -->
 
 

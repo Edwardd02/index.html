@@ -4110,6 +4110,7 @@ document.addEventListener("click", function (e){
                 zoomIn.appendChild(timeTd);
                 zoomInTable.appendChild(zoomIn);
                 document.getElementById("timetableDiv").appendChild(zoomInTable);
+                //blurEverything("zoomInTable");//TODO
                 hasZoomedIn = true;
             }
         }
@@ -4119,6 +4120,7 @@ document.addEventListener("click", function (e){
             document.getElementById("zoomInTable").remove();
         }
         hasZoomedIn = false;
+        removeBlur();
     }
     if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
@@ -4161,5 +4163,21 @@ function saveAsPDF() {
 //TODO:Styling
 
 }
+function blurEverything(exception) {
+    // Get all the elements on the page except the exception
+    const elements = document.querySelectorAll(`body > *:not(${exception})`);
 
+    // Add a blur style to each element
+    elements.forEach(element => {
+        element.style.filter = "blur(5px)";
+    });
+}
+function removeBlur() {
+    const elements = document.querySelectorAll("body > *");
+
+    // Remove the filter style from all elements
+    elements.forEach(element => {
+        element.style.filter = "none";
+    });
+}
 

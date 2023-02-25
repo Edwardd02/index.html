@@ -3782,8 +3782,11 @@ const timetableData = {
 }//811-818, 750
 
 const times = [];//this is for all the time we have so far, to avoid time conflict, we need it to be here
+
+document.getElementById("generate").addEventListener("click", generateTimetable);
+
 function generateTimetable() {
-    if (document.getElementById("rightClickDelete") !== null){
+    if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
     }
     hasMenu = false;
@@ -3835,7 +3838,9 @@ function generateTimetable() {
 
 //this is for print the course info on the timetable
 function printAllInfo(timetableData, timetableInfo) {
-
+    const newCourse = document.createElement('tr');
+    newCourse.className = "course";
+    newCourse.setAttribute('data-info', timetableInfo);
     timetableInfo = timetableData[timetableInfo];
     times.push(timetableInfo.time)
     const result = sortAndCheckTimeConflicts(times);
@@ -3847,8 +3852,7 @@ function printAllInfo(timetableData, timetableInfo) {
     } else {
         conflict.innerHTML = '';
     }
-    const newCourse = document.createElement('tr');
-    newCourse.className = "course";
+
     document.getElementById('timetable').appendChild(newCourse);
 
     const timeTd = document.createElement('td');
@@ -3899,6 +3903,7 @@ function printAllInfo(timetableData, timetableInfo) {
 
 
 }
+
 //this is for function printAllInfo, it adds the necessary info to the child of timetable
 function addInto(timeTd, timetableData, timetableInfo) {
 
@@ -3930,6 +3935,7 @@ function selectAllInfo(timetableData, timetableInfo) {
     const timetable = document.getElementById('options');
     timetable.appendChild(newButton);
 }
+
 //for select clickListener
 function selection() {
     const courseInfo = this.className;
@@ -3941,6 +3947,7 @@ function selection() {
 
 
 }
+
 //this is for sort time
 function sortAndCheckTimeConflicts(times) {
 
@@ -3957,19 +3964,18 @@ function sortAndCheckTimeConflicts(times) {
             end: endHour * 60 + endMin
         };
     });
-    console.log(timeObjects[0].days);
     // Sort time objects by start time and then by day
     timeObjects.sort((a, b) => a.start - b.start);
 
     // Check for conflicts
     let hasConflict = false;
-        for (let i = 0; i < timeObjects.length - 1; i++) {
-            const curr = timeObjects[i];
-            const next = timeObjects[i + 1];
-            if (curr.days[0] === next.days[0] && curr.end >= next.start){
-                        hasConflict = true;
-                        break;
-                        //TODO: a bug will happen if the first one are not the same date
+    for (let i = 0; i < timeObjects.length - 1; i++) {
+        const curr = timeObjects[i];
+        const next = timeObjects[i + 1];
+        if (curr.days[0] === next.days[0] && curr.end >= next.start) {
+            hasConflict = true;
+            break;
+            //TODO: a bug will happen if the first one are not the same date
         }
     }
     return {
@@ -3977,6 +3983,7 @@ function sortAndCheckTimeConflicts(times) {
         hasConflict
     };
 }
+
 let hasMenu = false;
 window.addEventListener("contextmenu", e => e.preventDefault());
 let table = document.getElementById("timetable");//it was working in html file, but now it's null
@@ -3997,7 +4004,7 @@ table.addEventListener("mousedown", function (e) {
         const menuItem = document.createElement("div");
         menuItem.innerHTML = `<p id = "deleteAll">Delete All</p><p id = "deleteAll">Delete This</p>`;
         menuItem.children.item(0).addEventListener("click", function () {
-            if (document.getElementById("rightClickDelete") !== null){
+            if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
             }
             hasMenu = false;
@@ -4006,40 +4013,48 @@ table.addEventListener("mousedown", function (e) {
                 parentElement = parentElement.parentElement;
             }
             if (parentElement && parentElement.tagName === "TR") {
-                if(parentElement.id === "doNotRemove")//the first row is day&time, should not be removed
+                if (parentElement.id === "doNotRemove")//the first row is day&time, should not be removed
                 {
                     const conflict = document.getElementById('timeqoute');
                     conflict.innerHTML = "“Time will not slow down when you were trying to delete it” – Developer";
-                }
-                else{
+                } else {
                     parentElement.remove();
+                    const dataInfo = parentElement.getAttribute('data-info');
+                    console.log(dataInfo);
+                    const time = timetableData[dataInfo].time.toString();
+                    for (let i = 0; i < times.length; i++) {
+                        if (time === times[i].toString()) {
+                            times.splice(i, 1);
+                            break;
+                        }
+                    }
+
                 }
 
             }
         });
         menuItem.children.item(1).addEventListener("click", function () {
-            if (document.getElementById("rightClickDelete") !== null){
+            if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
             }
             hasMenu = false;
             var parentElement = target;
-            while (parentElement && parentElement.tagName !== "TH") {//whatever target is, find the parent of is which is tr so the whole line whould be deleted
+            while (parentElement && parentElement.tagName !== "TH") {//whatever target is, find the parent of is which is tr so the whole line would be deleted
                 parentElement = parentElement.parentElement;
             }
             if (parentElement && parentElement.tagName === "TH") {
-                if(parentElement.className === "time")//the first row is day&time, should not be removed
+                if (parentElement.className === "time")//the first row is day&time, should not be removed
                 {
                     const conflict = document.getElementById('timeqoute');
                     conflict.innerHTML = "“Time will not slow down when you were trying to delete it” – Developer";
-                }
-                else{
+                } else {
                     parentElement.innerHTML = "";
                 }
 
             }
         });
         if (hasMenu) {
-            if (document.getElementById("rightClickDelete") !== null){
+            if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
             }
             // 为了避免多次创建菜单，还需要在隐藏菜单时将菜单从 body 中移除
@@ -4068,14 +4083,13 @@ table.addEventListener("mousedown", function (e) {
     }
 
 
-
 });
 document.addEventListener("click", function () {
-    if (document.getElementById("rightClickDelete") !== null){
+    if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
     }
     hasMenu = false;
-}, )
+},)
 document.getElementById("saveAsPDF").addEventListener("click", saveAsPDF);
 const specialElementHandlers = {
     '.no-saveAsPDF': function (element, renderer) {
@@ -4084,7 +4098,7 @@ const specialElementHandlers = {
 }
 
 function saveAsPDF() {
-    if (document.getElementById("rightClickDelete") !== null){
+    if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
     }
     hasMenu = false;

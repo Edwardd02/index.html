@@ -4004,7 +4004,7 @@ table.addEventListener("mousedown", function (e) {
         // 创建菜单项
         const menuItem = document.createElement("div");
         menuItem.innerHTML = `<p id = "deleteAll">Delete All</p>`;//<p id = "deleteThis">Delete This</p>
-        menuItem.children.item(0).addEventListener("click", function () {
+        menuItem.children.item(0).addEventListener("click", function () {//TODO:鼠标移上去时闪烁，因为点到空白处不行
             if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
             }
@@ -4164,14 +4164,15 @@ function saveAsPDF() {
 
 }
 function blurEverything(exception) {
-    // Get all the elements on the page except the exception
-    const elements = document.querySelectorAll(`body > *:not(${exception})`);
+    // Get all the immediate child elements of the body element except the exception
+    const elements = document.querySelectorAll(`body > :not(${exception}):not(script):not(style)`);
 
     // Add a blur style to each element
     elements.forEach(element => {
         element.style.filter = "blur(5px)";
     });
 }
+
 function removeBlur() {
     const elements = document.querySelectorAll("body > *");
 

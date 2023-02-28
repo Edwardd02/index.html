@@ -1,232 +1,234 @@
 const courseNameStrings = ["Financial Accounting", "Financial Accounting", "Managerial Accounting", "Advertising and Globalization", "Social Media Marketing", "Vietnam War", "Youth Cultures", "The Visual Anthropology of Modern Japan", "Topics in Cultural Anthropology: Diversity in Japan", "Japanese Culture", "The Anthropology of Modern China", "Painting for Non-Majors", "3-D Design", "3-D Design", "Drawing I", "Drawing I", "Drawing II", "Drawing II", "2D Design", "2D Design", "2D Design", "Painting", "Painting", "Painting", "Intermediate 3-D", "Relief Printmaking", "Intermediate Printmaking: Relief", "Screenprinting", "Artist Books, Zines and Independent Publishing", "Intermediate Drawing", "Computer Imaging", "Intermediate Computer Imaging", "Art Photography: Digital", "Art Photography: Digital", "Art Photography: Digital", "Intermediate Art Photography: Digital", "Art Photo: Moving Image", "Special Topics: Advanced Artist Books", "Advanced Painting", "Advanced 3-D", "Advanced Printmaking", "Advanced Drawing", "Advanced Computer Imaging", "Advanced Art Photography: Digital", "Painting Workshop", "Painting Portfolio", "3-D Workshop", "3-D Portfolio", "Printmaking Workshop", "Printmaking Portfolio", "Drawing Workshop", "Drawing Portfolio", "Computer Imaging Workshop", "Computer Imaging Portfolio", "Art Seminar", "Art Photography Workshop", "Art Photography Portfolio", "Introduction to Methods and Theories", "Arts of the World I: Prehistoric to 1300", "History of Modern Crafts", "Art History Writing Intensive: Eurasia: Connecting European and Asian Art and Culture", "Topics in International Cinema: The Family in Japanese Film from Melodrama to Anime", "Topics in Non-Western Art: Japanese Art Before and After WWII: National Identities in Modernization", "Topics in Non-Western Art: Japanese Graphic Design History", "East Meets West", "Pre-Modern Japanese Art up to the Edo Period", "Women and Art", "Asian Behavior & Thought", "Special Topics in Asian Studies I: Diversity in Japan", "Special Topics in Asian Studies I: Risk Culture", "Special Topics I: Japanese Civil Society: Development & Approaches to Current Issues", "Geography of East and South Asia", "Japanese Popular Culture and Its Literature", "Japanese Popular Culture and Its Literature", "Writing in the City", "Vietnam War", "The Visual Anthropology of Modern Japan", "Japan in a Changing World Order", "Japanese Culture", "The Anthropology of Modern China", "Introduction to East Asia: Japan", "Introduction to Asian Business", "Introduction to Asian Business", "Art History East & West", "Japanese Art", "Special Topics in Asian Studies II: Korean Politics", "Special Topics III: Chinese Foreign Policy", "Metropolitan Tokyo", "East Asia and the United States", "Japan Today", "Writing Seminar in Asian Studies: Environmental History of Modern East Asia", "Modern Japan: Empire, War, Society", "DNA: Friend or Foe", "Nature Has No Reverse", "Chinese Elements I", "Communication and Public Life", "Communication and Public Life", "Communications Seminar", "Contemporary American Social Movements", "Intercultural Communication", "Cyberspace & Society ", "Cyberspace & Society ", "Introduction to Problem Solving and Programming in Python", "Introduction to Problem Solving and Programming in Python", "Computer Programming in C", "Program Design and Abstraction", "Mathematical Concepts in Computing I", "Database Management Systems", "Data Structures", "Data Structures and Algorithms", "The American Economy", "The American Economy", "Introduction to the Economy", "Macroeconomic Principles", "Macroeconomic Principles", "Microeconomic Principles", "Microeconomic Principles", "Microeconomic Principles", "Global Economics", "Economics for Life", "Economics for Life", "Intermediate Microeconomic Analysis", "Intermediate Microeconomic Analysis", "Intermediate Macroeconomic Analysis", "Intermediate Macroeconomic Analysis", "Public Finance", "Comparative Economic Systems", "Comparative Economic Systems", "Managerial Economics", "International Monetary Economics", "Energy, Ecology, and Economy", "Health Economics", "Economics Writing Seminar", "Economics Writing Seminar", "It’s Bigger Than Hip-hop: Exploring the Evolution of Race and Identity through Hip-hop", "Introduction to Academic Discourse", "Introduction to Academic Discourse", "Introduction to Academic Discourse ESL", "Introduction to Academic Discourse ESL", "Introduction to Academic Discourse ESL", "Introduction to Academic Discourse ESL", "Analytical Reading and Writing", "Analytical Reading and Writing", "Analytical Reading and Writing", "Analytical Reading and Writing", "Analytical Reading and Writing: ESL", "Analytical Reading and Writing: ESL", "Analytical Reading and Writing: ESL", "Analytical Reading and Writing: ESL", "Analytical Reading and Writing: ESL", "Analytical Reading and Writing: ESL", "Analytical Reading and Writing: ESL", "Creative Acts", "Representing Race", "Eating Cultures", "Why Care about College: Higher Education in American Life", "Writing for Business and Industry", "Writing for Business and Industry", "Sustainable Environments", "Introduction to French", "Digital Mapping: From Mercator to Mashups", "Digital Mapping: From Mercator to Mashups", "Global Cities", "Urban Society", "East and South Asia", "Politics of Identity in America", "Politics of Identity in America", "The Global Crisis: Power, Politics and the Making of Our Times", "Vietnam War", "Introduction to East Asia: Japan", "Superpower America", "Japan Today", "Modern Japan: Empire, War, Society", "Leadership and Organizational Management", "IH I: The Good Life", "IH I: The Good Life", "IH I: The Good Life", "IH I: The Good Life", "IH I: The Good Life", "IH I: The Good Life", "IH I: The Good Life", "IH I: The Good Life", "IH II: The Common Good", "IH II: The Common Good", "IH II: The Common Good", "IH II: The Common Good", "IH II: The Common Good", "IH II: The Common Good", "IH II: The Common Good", "IH II: The Common Good", "Introduction to Global Finance", "Introduction to Global Finance", "Marketing in a Global Environment", "Global Business Overview", "International Business Capstone", "Japanese Elements I", "Japanese Elements I", "Japanese Elements I", "Japanese Elements II", "Japanese Elements II", "Japanese Elements II", "Oral Intensive Japanese I", "Kanji I", "Special Topics I: Practical Japanese for Study Abroad Students", "Oral Intensive Japanese II", "The Japanese Writer in Focus", "Kanji II", "TUJ - Japanese Intermediate I", "TUJ - Japanese Intermediate I", "TUJ - Japanese Intermediate I", "TUJ - Japanese Intermediate II", "TUJ - Japanese Intermediate II", "TUJ - Japanese Intermediate II", "Special Topics in Japanese I: Introduction to Translating Japanese to/from English for Non-Native Speakers of Japanese", "Advanced Japanese I", "Advanced Japanese II", "Advanced Japanese Writing", "Special Topics in Japanese II: Kanji III", "Japanese Advanced III", "Japanese Advanced IV", "Journalism and Society", "Journalism Research", "Magazine Article Writing", "Magazine Article Writing", "Documentary Photography", "Experimental Journalism", "Gender and American Mass Media", "Newsroom Management", "Special Topics in Fitness: Cardiovascular Fitness for a Healthy Lifestyle", "Yoga I", "Klein First-Year Seminar", "Korean Elements I", "Education in the Global City", "African Americans, Equality and the Law: Weapon or Tool?", "Law and American Society", "Professional Development for Liberal Arts Majors", "Special Topics in Liberal Arts: Entrepreneurship & Creativity", "Special Topics in Liberal Arts II: International Career Strategies", "Special Topics in Liberal Arts III: Technology in International Business", "Data Science", "Marketing Management", "Marketing Management", "Basic Mathematics for Today's World", "Intermediate Algebra", "Intermediate Algebra", "Math for a Digital World", "Math for a Digital World", "Mathematical Patterns", "College Algebra", "College Algebra", "Precalculus", "Differential and Integral Calculus", "Differential and Integral Calculus", "Calculus I", "The Future of Your TV", "Introduction to Media Analysis", "Introduction to Media Production", "Introduction to Media Production", "Audio for Media", "Writing Workshop", "Genres of Media Production", "Producing and Directing", "Creative Scriptwriting", "World Musics & Cultures", "American Popular Music", "American Popular Music", "Philosophy of the Human", "Exploring the Cosmos", "Exploring the Cosmos", "The History & Significance of Race in America", "The Making of American Society: Melting Pot or Culture Wars?", "Development & Globalization", "War and Peace", "Foreign Governments and Politics", "International Politics", "Comparative Political Systems in Latin America", "Politics of the Global Economy", "Japan in a Changing World Order", "Introduction to Political Philosophy", "Mideast Politics", "East Asia and the United States", "Special Topics: Research Preparation Seminar: Korean Politics", "Seminar in International Politics: Chinese Foreign Policy", "Workings of the Mind", "Brain Matters", "Human Sexuality", "Introduction to Psychology", "Introduction to Psychology", "Careers in Psychology", "Statistics for Psychology", "Critical Thinking in Psychology", "Topics in Psychology I: What's Happening in Japan - From Foundation of Mental health to Career", "Foundations of Cognitive Psychology", "Foundations of Developmental Psychology", "Foundations of Behavioral Neuroscience", "Conducting Psychological Research", "Topics in Psychology: Gender Studies in Psychology", "Topics in Psychology: ADHD in the Cross-Cultural Context", "Capstone in Psychology: The Power of Belief", "Fundamentals of Personal Financial Planning", "Selected Topics in Sociology: Risk Culture", "Bilingual Communities", "Basic I", "Statistics in the News", "Statistical Business Analytics", "Statistical Business Analytics", "TUJ Bridge Seminar 1", "TUJ Bridge Seminar 1", "Bridge Seminar 2: Academic Research", "Bridge Seminar 2: Academic Research", "Bridge Seminar 2: Academic Research", "The Art of Acting", "The Art of Acting", "Academic Bridge for International Students", "Academic Bridge for International Students", "Academic Bridge for International Students"]
-const courseNameToCode = {  'Financial Accounting': 'ACCT 2101 (812)' ,
-    'Managerial Accounting': 'ACCT 2102 (811)' ,
-    'Advertising and Globalization': 'ADV 0853 (811)' ,
-    'Social Media Marketing': 'ADV 2005 (811)' ,
-    'Vietnam War': 'HIST 2217 (811)' ,
-    'Youth Cultures': 'ANTH 0817 (811)' ,
-    'The Visual Anthropology of Modern Japan': 'ASST 2238 (811)' ,
-    'Topics in Cultural Anthropology: Diversity in Japan': 'ANTH 2310 (811)' ,
-    'Japanese Culture': 'ASST 2373 (750)' ,
-    'The Anthropology of Modern China': 'ASST 2374 (750)' ,
-    'Painting for Non-Majors': 'ARTU 1101 (811)' ,
-    '3-D Design': 'ARTU 1201 (812)' ,
-    'Drawing I': 'ARTU 1401 (812)' ,
-    'Drawing II': 'ARTU 1402 (812)' ,
-    '2D Design': 'ARTU 1501 (813)' ,
-    'Painting': 'ARTU 2102 (813)' ,
-    'Intermediate 3-D': 'ARTU 2202 (811)' ,
-    'Relief Printmaking': 'ARTU 2301 (811)' ,
-    'Intermediate Printmaking: Relief': 'ARTU 2302 (811)' ,
-    'Screenprinting': 'ARTU 2341 (811)' ,
-    'Artist Books, Zines and Independent Publishing': 'ARTU 2351 (811)' ,
-    'Intermediate Drawing': 'ARTU 2402 (811)' ,
-    'Computer Imaging': 'ARTU 2601 (811)' ,
-    'Intermediate Computer Imaging': 'ARTU 2602 (811)' ,
-    'Art Photography: Digital': 'ARTU 2811 (813)' ,
-    'Intermediate Art Photography: Digital': 'ARTU 2812 (811)' ,
-    'Art Photo: Moving Image': 'ARTU 2835 (811)' ,
-    'Special Topics: Advanced Artist Books': 'ARTU 3000 (811)' ,
-    'Advanced Painting': 'ARTU 3103 (811)' ,
-    'Advanced 3-D': 'ARTU 3203 (811)' ,
-    'Advanced Printmaking': 'ARTU 3303 (811)' ,
-    'Advanced Drawing': 'ARTU 3403 (811)' ,
-    'Advanced Computer Imaging': 'ARTU 3603 (811)' ,
-    'Advanced Art Photography: Digital': 'ARTU 3813 (811)' ,
-    'Painting Workshop': 'ARTU 4148 (811)' ,
-    'Painting Portfolio': 'ARTU 4149 (811)' ,
-    '3-D Workshop': 'ARTU 4248 (811)' ,
-    '3-D Portfolio': 'ARTU 4249 (811)' ,
-    'Printmaking Workshop': 'ARTU 4348 (811)' ,
-    'Printmaking Portfolio': 'ARTU 4349 (811)' ,
-    'Drawing Workshop': 'ARTU 4448 (811)' ,
-    'Drawing Portfolio': 'ARTU 4449 (811)' ,
-    'Computer Imaging Workshop': 'ARTU 4648 (811)' ,
-    'Computer Imaging Portfolio': 'ARTU 4649 (811)' ,
-    'Art Seminar': 'ARTU 4796 (811)' ,
-    'Art Photography Workshop': 'ARTU 4848 (811)' ,
-    'Art Photography Portfolio': 'ARTU 4849 (811)' ,
-    'Introduction to Methods and Theories': 'ARTH 1103 (811)' ,
-    'Arts of the World I: Prehistoric to 1300': 'ARTH 1155 (811)' ,
-    'History of Modern Crafts': 'ARTH 2002 (750)' ,
-    'Art History Writing Intensive: Eurasia: Connecting European and Asian Art and Culture': 'ARTH 2096 (811)' ,
-    'Topics in International Cinema: The Family in Japanese Film from Melodrama to Anime': 'ARTH 2660 (811)' ,
-    'Topics in Non-Western Art: Japanese Art Before and After WWII: National Identities in Modernization': 'ARTH 2800 (811)' ,
-    'Topics in Non-Western Art: Japanese Graphic Design History': 'ARTH 2800 (812)' ,
-    'East Meets West': 'ARTH 2807 (750)' ,
-    'Pre-Modern Japanese Art up to the Edo Period': 'ARTH 2815 (811)' ,
-    'Women and Art': 'ARTH 3302 (750)' ,
-    'Asian Behavior & Thought': 'ASST 0811 (750)' ,
-    'Special Topics in Asian Studies I: Diversity in Japan': 'ASST 2000 (811)' ,
-    'Special Topics in Asian Studies I: Risk Culture': 'ASST 2000 (812)' ,
-    'Special Topics I: Japanese Civil Society: Development & Approaches to Current Issues': 'ASST 2030 (750)' ,
-    'Geography of East and South Asia': 'ASST 2074 (750)' ,
-    'Japanese Popular Culture and Its Literature': 'ASST 2098 (751)' ,
-    'Writing in the City': 'ASST 2196 (750)' ,
-    'Japan in a Changing World Order': 'POLS 2351 (811)' ,
-    'Introduction to East Asia: Japan': 'HIST 2502 (811)' ,
-    'Introduction to Asian Business': 'ASST 2511 (811)' ,
-    'Art History East & West': 'ASST 2807 (750)' ,
-    'Japanese Art': 'ASST 2815 (811)' ,
-    'Special Topics in Asian Studies II: Korean Politics': 'ASST 3000 (811)' ,
-    'Special Topics III: Chinese Foreign Policy': 'ASST 3030 (811)' ,
-    'Metropolitan Tokyo': 'ASST 3076 (811)' ,
-    'East Asia and the United States': 'POLS 3252 (811)' ,
-    'Japan Today': 'HIST 3541 (750)' ,
-    'Writing Seminar in Asian Studies: Environmental History of Modern East Asia': 'ASST 4096 (811)' ,
-    'Modern Japan: Empire, War, Society': 'HIST 4697 (750)' ,
-    'DNA: Friend or Foe': 'BIOL 0848 (811)' ,
-    'Nature Has No Reverse': 'CHEM 0838 (811)' ,
-    'Chinese Elements I': 'CHI 1001 (811)' ,
-    'Communication and Public Life': 'CMST 1111 (812)' ,
-    'Communications Seminar': 'CMST 2111 (811)' ,
-    'Contemporary American Social Movements': 'CSI 0801 (750)' ,
-    'Intercultural Communication': 'CSI 3701 (750)' ,
-    'Cyberspace & Society ': 'CIS 0835 (811)' ,
-    'Introduction to Problem Solving and Programming in Python': 'CIS 1051 (812)' ,
-    'Computer Programming in C': 'CIS 1057 (811)' ,
-    'Program Design and Abstraction': 'CIS 1068 (811)' ,
-    'Mathematical Concepts in Computing I': 'CIS 1166 (811)' ,
-    'Database Management Systems': 'CIS 2109 (811)' ,
-    'Data Structures': 'CIS 2168 (811)' ,
-    'Data Structures and Algorithms': 'CIS 3223 (811)' ,
-    'The American Economy': 'ECON 0858 (811)' ,
-    'Introduction to the Economy': 'ECON 1001 (811)' ,
-    'Macroeconomic Principles': 'ECON 1101 (812)' ,
-    'Microeconomic Principles': 'ECON 1102 (812)' ,
-    'Global Economics': 'ECON 1103 (811)' ,
-    'Economics for Life': 'ECON 3408 (811)' ,
-    'Intermediate Microeconomic Analysis': 'ECON 3501 (811)' ,
-    'Intermediate Macroeconomic Analysis': 'ECON 3502 (811)' ,
-    'Public Finance': 'ECON 3512 (811)' ,
-    'Comparative Economic Systems': 'ECON 3537 (811)' ,
-    'Managerial Economics': 'ECON 3538 (811)' ,
-    'International Monetary Economics': 'ECON 3564 (811)' ,
-    'Energy, Ecology, and Economy': 'ECON 3596 (811)' ,
-    'Health Economics': 'ECON 3597 (811)' ,
-    'Economics Writing Seminar': 'ECON 3598 (811)' ,
-    'It’s Bigger Than Hip-hop: Exploring the Evolution of Race and Identity through Hip-hop': 'EDUC 0806 (811)' ,
-    'Introduction to Academic Discourse': 'ENG 0701 (811)' ,
-    'Introduction to Academic Discourse ESL': 'ENG 0711 (812)' ,
-    'Analytical Reading and Writing': 'ENG 0802 (813)' ,
-    'Analytical Reading and Writing: ESL': 'ENG 0812 (815)' ,
-    'Creative Acts': 'ENG 0826 (811)' ,
-    'Representing Race': 'ENG 0834 (811)' ,
-    'Eating Cultures': 'ENG 0837 (811)' ,
-    'Why Care about College: Higher Education in American Life': 'ENG 0855 (750)' ,
-    'Writing for Business and Industry': 'ENG 2007 (812)' ,
-    'Sustainable Environments': 'ENST 0842 (750)' ,
-    'Introduction to French': 'FREN 1001 (811)' ,
-    'Digital Mapping: From Mercator to Mashups': 'GUS 0821 (812)' ,
-    'Global Cities': 'GUS 0831 (811)' ,
-    'Urban Society': 'GUS 1022 (811)' ,
-    'East and South Asia': 'GUS 2074 (750)' ,
-    'Politics of Identity in America': 'HIST 0832 (812)' ,
-    'The Global Crisis: Power, Politics and the Making of Our Times': 'HIST 0865 (811)' ,
-    'Superpower America': 'HIST 3229 (750)' ,
-    'Leadership and Organizational Management': 'HRM 1101 (811)' ,
-    'IH I: The Good Life': 'IH 0851 (816)' ,
-    'IH II: The Common Good': 'IH 0852 (817)' ,
-    'Introduction to Global Finance': 'IBS 3101 (812)' ,
-    'Marketing in a Global Environment': 'IBS 3501 (811)' ,
-    'Global Business Overview': 'IBS 4197 (811)' ,
-    'International Business Capstone': 'IBS 4596 (811)' ,
-    'Japanese Elements I': 'JPNS 1001 (812)' ,
-    'Japanese Elements II': 'JPNS 1002 (812)' ,
-    'Oral Intensive Japanese I': 'JPNS 1003 (811)' ,
-    'Kanji I': 'JPNS 1301 (811)' ,
-    'Special Topics I: Practical Japanese for Study Abroad Students': 'JPNS 2000 (811)' ,
-    'Oral Intensive Japanese II': 'JPNS 2003 (811)' ,
-    'The Japanese Writer in Focus': 'JPNS 2050 (811)' ,
-    'Kanji II': 'JPNS 2301 (811)' ,
-    'TUJ - Japanese Intermediate I': 'JPNS 2701 (812)' ,
-    'TUJ - Japanese Intermediate II': 'JPNS 2702 (812)' ,
-    'Special Topics in Japanese I: Introduction to Translating Japanese to/from English for Non-Native Speakers of Japanese': 'JPNS 3000 (750)' ,
-    'Advanced Japanese I': 'JPNS 3001 (811)' ,
-    'Advanced Japanese II': 'JPNS 3002 (811)' ,
-    'Advanced Japanese Writing': 'JPNS 3003 (811)' ,
-    'Special Topics in Japanese II: Kanji III': 'JPNS 3010 (811)' ,
-    'Japanese Advanced III': 'JPNS 4001 (811)' ,
-    'Japanese Advanced IV': 'JPNS 4002 (811)' ,
-    'Journalism and Society': 'JRN 1111 (750)' ,
-    'Journalism Research': 'JRN 2101 (811)' ,
-    'Magazine Article Writing': 'JRN 2396 (812)' ,
-    'Documentary Photography': 'JRN 3403 (811)' ,
-    'Experimental Journalism': 'JRN 3505 (811)' ,
-    'Gender and American Mass Media': 'JRN 3705 (811)' ,
-    'Newsroom Management': 'JRN 3708 (811)' ,
-    'Special Topics in Fitness: Cardiovascular Fitness for a Healthy Lifestyle': 'KINS 1001 (811)' ,
-    'Yoga I': 'KINS 1064 (811)' ,
-    'Klein First-Year Seminar': 'KLN 1001 (750)' ,
-    'Korean Elements I': 'KRN 1001 (811)' ,
-    'Education in the Global City': 'LAWU 0854 (811)' ,
-    'African Americans, Equality and the Law: Weapon or Tool?': 'LGLS 0803 (811)' ,
-    'Law and American Society': 'LGLS 0856 (811)' ,
-    'Professional Development for Liberal Arts Majors': 'CLA 1002 (811)' ,
-    'Special Topics in Liberal Arts: Entrepreneurship & Creativity': 'CLA 1010 (750)' ,
-    'Special Topics in Liberal Arts II: International Career Strategies': 'CLA 2020 (811)' ,
-    'Special Topics in Liberal Arts III: Technology in International Business': 'CLA 2030 (811)' ,
-    'Data Science': 'MIS 0855 (811)' ,
-    'Marketing Management': 'MKTG 2101 (812)' ,
-    "Basic Mathematics for Today's World": 'MATH 0701 (811)' ,
-    'Intermediate Algebra': 'MATH 0702 (811)' ,
-    'Math for a Digital World': 'MATH 0823 (811)' ,
-    'Mathematical Patterns': 'MATH 0824 (811)' ,
-    'College Algebra': 'MATH 1021 (812)' ,
-    'Precalculus': 'MATH 1022 (811)' ,
-    'Differential and Integral Calculus': 'MATH 1031 (811)' ,
-    'Calculus I': 'MATH 1041 (811)' ,
-    'The Future of Your TV': 'MSP 0821 (750)' ,
-    'Introduction to Media Analysis': 'MSP 1021 (750)' ,
-    'Introduction to Media Production': 'MSP 1701 (812)' ,
-    'Audio for Media': 'MSP 2751 (811)' ,
-    'Writing Workshop': 'MSP 3196 (811)' ,
-    'Genres of Media Production': 'MSP 3701 (811)' ,
-    'Producing and Directing': 'MSP 4701 (750)' ,
-    'Creative Scriptwriting': 'MSP 4796 (811)' ,
-    'World Musics & Cultures': 'MUST 0809 (750)' ,
-    'American Popular Music': 'MUST 1763 (811)' ,
-    'Philosophy of the Human': 'PHIL 0839 (811)' ,
-    'Exploring the Cosmos': 'PHYS 0834 (811)' ,
-    'The History & Significance of Race in America': 'POLS 0829 (811)' ,
-    'The Making of American Society: Melting Pot or Culture Wars?': 'POLS 0859 (811)' ,
-    'Development & Globalization': 'POLS 0862 (811)' ,
-    'War and Peace': 'POLS 0864 (811)' ,
-    'Foreign Governments and Politics': 'POLS 1201 (811)' ,
-    'International Politics': 'POLS 1301 (811)' ,
-    'Comparative Political Systems in Latin America': 'POLS 2231 (811)' ,
-    'Politics of the Global Economy': 'POLS 2321 (811)' ,
-    'Introduction to Political Philosophy': 'POLS 2496 (811)' ,
-    'Mideast Politics': 'POLS 3241 (811)' ,
-    'Special Topics: Research Preparation Seminar: Korean Politics': 'POLS 3520 (811)' ,
-    'Seminar in International Politics: Chinese Foreign Policy': 'POLS 4310 (811)' ,
-    'Workings of the Mind': 'PSY 0816 (811)' ,
-    'Brain Matters': 'PSY 0817 (811)' ,
-    'Human Sexuality': 'PSY 0818 (811)' ,
-    'Introduction to Psychology': 'PSY 1001 (812)' ,
-    'Careers in Psychology': 'PSY 1002 (811)' ,
-    'Statistics for Psychology': 'PSY 1003 (811)' ,
-    'Critical Thinking in Psychology': 'PSY 1004 (811)' ,
-    "Topics in Psychology I: What's Happening in Japan - From Foundation of Mental health to Career": 'PSY 1110 (811)' ,
-    'Foundations of Cognitive Psychology': 'PSY 2101 (811)' ,
-    'Foundations of Developmental Psychology': 'PSY 2301 (811)' ,
-    'Foundations of Behavioral Neuroscience': 'PSY 2501 (811)' ,
-    'Conducting Psychological Research': 'PSY 3096 (811)' ,
-    'Topics in Psychology: Gender Studies in Psychology': 'PSY 3620 (811)' ,
-    'Topics in Psychology: ADHD in the Cross-Cultural Context': 'PSY 3620 (812)' ,
-    'Capstone in Psychology: The Power of Belief': 'PSY 4696 (811)' ,
-    'Fundamentals of Personal Financial Planning': 'RMI 2501 (750)' ,
-    'Selected Topics in Sociology: Risk Culture': 'SOC 2130 (811)' ,
-    'Bilingual Communities': 'SPAN 0826 (811)' ,
-    'Basic I': 'SPAN 1001 (811)' ,
-    'Statistics in the News': 'STAT 0826 (750)' ,
-    'Statistical Business Analytics': 'STAT 2103 (811)' ,
-    'TUJ Bridge Seminar 1': 'TUJ 1001 (751)' ,
-    'Bridge Seminar 2: Academic Research': 'TUJ 1002 (812)' ,
-    'The Art of Acting': 'THTR 0825 (812)' ,
-    'Academic Bridge for International Students': 'UNVS 1003 (812)' ,
+const courseNameToCode = {
+    'Financial Accounting': 'ACCT 2101 (812)',
+    'Managerial Accounting': 'ACCT 2102 (811)',
+    'Advertising and Globalization': 'ADV 0853 (811)',
+    'Social Media Marketing': 'ADV 2005 (811)',
+    'Vietnam War': 'HIST 2217 (811)',
+    'Youth Cultures': 'ANTH 0817 (811)',
+    'The Visual Anthropology of Modern Japan': 'ASST 2238 (811)',
+    'Topics in Cultural Anthropology: Diversity in Japan': 'ANTH 2310 (811)',
+    'Japanese Culture': 'ASST 2373 (750)',
+    'The Anthropology of Modern China': 'ASST 2374 (750)',
+    'Painting for Non-Majors': 'ARTU 1101 (811)',
+    '3-D Design': 'ARTU 1201 (812)',
+    'Drawing I': 'ARTU 1401 (812)',
+    'Drawing II': 'ARTU 1402 (812)',
+    '2D Design': 'ARTU 1501 (813)',
+    'Painting': 'ARTU 2102 (813)',
+    'Intermediate 3-D': 'ARTU 2202 (811)',
+    'Relief Printmaking': 'ARTU 2301 (811)',
+    'Intermediate Printmaking: Relief': 'ARTU 2302 (811)',
+    'Screenprinting': 'ARTU 2341 (811)',
+    'Artist Books, Zines and Independent Publishing': 'ARTU 2351 (811)',
+    'Intermediate Drawing': 'ARTU 2402 (811)',
+    'Computer Imaging': 'ARTU 2601 (811)',
+    'Intermediate Computer Imaging': 'ARTU 2602 (811)',
+    'Art Photography: Digital': 'ARTU 2811 (813)',
+    'Intermediate Art Photography: Digital': 'ARTU 2812 (811)',
+    'Art Photo: Moving Image': 'ARTU 2835 (811)',
+    'Special Topics: Advanced Artist Books': 'ARTU 3000 (811)',
+    'Advanced Painting': 'ARTU 3103 (811)',
+    'Advanced 3-D': 'ARTU 3203 (811)',
+    'Advanced Printmaking': 'ARTU 3303 (811)',
+    'Advanced Drawing': 'ARTU 3403 (811)',
+    'Advanced Computer Imaging': 'ARTU 3603 (811)',
+    'Advanced Art Photography: Digital': 'ARTU 3813 (811)',
+    'Painting Workshop': 'ARTU 4148 (811)',
+    'Painting Portfolio': 'ARTU 4149 (811)',
+    '3-D Workshop': 'ARTU 4248 (811)',
+    '3-D Portfolio': 'ARTU 4249 (811)',
+    'Printmaking Workshop': 'ARTU 4348 (811)',
+    'Printmaking Portfolio': 'ARTU 4349 (811)',
+    'Drawing Workshop': 'ARTU 4448 (811)',
+    'Drawing Portfolio': 'ARTU 4449 (811)',
+    'Computer Imaging Workshop': 'ARTU 4648 (811)',
+    'Computer Imaging Portfolio': 'ARTU 4649 (811)',
+    'Art Seminar': 'ARTU 4796 (811)',
+    'Art Photography Workshop': 'ARTU 4848 (811)',
+    'Art Photography Portfolio': 'ARTU 4849 (811)',
+    'Introduction to Methods and Theories': 'ARTH 1103 (811)',
+    'Arts of the World I: Prehistoric to 1300': 'ARTH 1155 (811)',
+    'History of Modern Crafts': 'ARTH 2002 (750)',
+    'Art History Writing Intensive: Eurasia: Connecting European and Asian Art and Culture': 'ARTH 2096 (811)',
+    'Topics in International Cinema: The Family in Japanese Film from Melodrama to Anime': 'ARTH 2660 (811)',
+    'Topics in Non-Western Art: Japanese Art Before and After WWII: National Identities in Modernization': 'ARTH 2800 (811)',
+    'Topics in Non-Western Art: Japanese Graphic Design History': 'ARTH 2800 (812)',
+    'East Meets West': 'ARTH 2807 (750)',
+    'Pre-Modern Japanese Art up to the Edo Period': 'ARTH 2815 (811)',
+    'Women and Art': 'ARTH 3302 (750)',
+    'Asian Behavior & Thought': 'ASST 0811 (750)',
+    'Special Topics in Asian Studies I: Diversity in Japan': 'ASST 2000 (811)',
+    'Special Topics in Asian Studies I: Risk Culture': 'ASST 2000 (812)',
+    'Special Topics I: Japanese Civil Society: Development & Approaches to Current Issues': 'ASST 2030 (750)',
+    'Geography of East and South Asia': 'ASST 2074 (750)',
+    'Japanese Popular Culture and Its Literature': 'ASST 2098 (751)',
+    'Writing in the City': 'ASST 2196 (750)',
+    'Japan in a Changing World Order': 'POLS 2351 (811)',
+    'Introduction to East Asia: Japan': 'HIST 2502 (811)',
+    'Introduction to Asian Business': 'ASST 2511 (811)',
+    'Art History East & West': 'ASST 2807 (750)',
+    'Japanese Art': 'ASST 2815 (811)',
+    'Special Topics in Asian Studies II: Korean Politics': 'ASST 3000 (811)',
+    'Special Topics III: Chinese Foreign Policy': 'ASST 3030 (811)',
+    'Metropolitan Tokyo': 'ASST 3076 (811)',
+    'East Asia and the United States': 'POLS 3252 (811)',
+    'Japan Today': 'HIST 3541 (750)',
+    'Writing Seminar in Asian Studies: Environmental History of Modern East Asia': 'ASST 4096 (811)',
+    'Modern Japan: Empire, War, Society': 'HIST 4697 (750)',
+    'DNA: Friend or Foe': 'BIOL 0848 (811)',
+    'Nature Has No Reverse': 'CHEM 0838 (811)',
+    'Chinese Elements I': 'CHI 1001 (811)',
+    'Communication and Public Life': 'CMST 1111 (812)',
+    'Communications Seminar': 'CMST 2111 (811)',
+    'Contemporary American Social Movements': 'CSI 0801 (750)',
+    'Intercultural Communication': 'CSI 3701 (750)',
+    'Cyberspace & Society ': 'CIS 0835 (811)',
+    'Introduction to Problem Solving and Programming in Python': 'CIS 1051 (812)',
+    'Computer Programming in C': 'CIS 1057 (811)',
+    'Program Design and Abstraction': 'CIS 1068 (811)',
+    'Mathematical Concepts in Computing I': 'CIS 1166 (811)',
+    'Database Management Systems': 'CIS 2109 (811)',
+    'Data Structures': 'CIS 2168 (811)',
+    'Data Structures and Algorithms': 'CIS 3223 (811)',
+    'The American Economy': 'ECON 0858 (811)',
+    'The American Economy': 'ECON 0858 (750)',
+    'Introduction to the Economy': 'ECON 1001 (811)',
+    'Macroeconomic Principles': 'ECON 1101 (812)',
+    'Microeconomic Principles': 'ECON 1102 (812)',
+    'Global Economics': 'ECON 1103 (811)',
+    'Economics for Life': 'ECON 3408 (811)',
+    'Intermediate Microeconomic Analysis': 'ECON 3501 (811)',
+    'Intermediate Macroeconomic Analysis': 'ECON 3502 (811)',
+    'Public Finance': 'ECON 3512 (811)',
+    'Comparative Economic Systems': 'ECON 3537 (811)',
+    'Managerial Economics': 'ECON 3538 (811)',
+    'International Monetary Economics': 'ECON 3564 (811)',
+    'Energy, Ecology, and Economy': 'ECON 3596 (811)',
+    'Health Economics': 'ECON 3597 (811)',
+    'Economics Writing Seminar': 'ECON 3598 (811)',
+    'It’s Bigger Than Hip-hop: Exploring the Evolution of Race and Identity through Hip-hop': 'EDUC 0806 (811)',
+    'Introduction to Academic Discourse': 'ENG 0701 (811)',
+    'Introduction to Academic Discourse ESL': 'ENG 0711 (812)',
+    'Analytical Reading and Writing': 'ENG 0802 (813)',
+    'Analytical Reading and Writing: ESL': 'ENG 0812 (815)',
+    'Creative Acts': 'ENG 0826 (811)',
+    'Representing Race': 'ENG 0834 (811)',
+    'Eating Cultures': 'ENG 0837 (811)',
+    'Why Care about College: Higher Education in American Life': 'ENG 0855 (750)',
+    'Writing for Business and Industry': 'ENG 2007 (812)',
+    'Sustainable Environments': 'ENST 0842 (750)',
+    'Introduction to French': 'FREN 1001 (811)',
+    'Digital Mapping: From Mercator to Mashups': 'GUS 0821 (812)',
+    'Global Cities': 'GUS 0831 (811)',
+    'Urban Society': 'GUS 1022 (811)',
+    'East and South Asia': 'GUS 2074 (750)',
+    'Politics of Identity in America': 'HIST 0832 (812)',
+    'The Global Crisis: Power, Politics and the Making of Our Times': 'HIST 0865 (811)',
+    'Superpower America': 'HIST 3229 (750)',
+    'Leadership and Organizational Management': 'HRM 1101 (811)',
+    'IH I: The Good Life': 'IH 0851 (816)',
+    'IH II: The Common Good': 'IH 0852 (817)',
+    'Introduction to Global Finance': 'IBS 3101 (812)',
+    'Marketing in a Global Environment': 'IBS 3501 (811)',
+    'Global Business Overview': 'IBS 4197 (811)',
+    'International Business Capstone': 'IBS 4596 (811)',
+    'Japanese Elements I': 'JPNS 1001 (812)',
+    'Japanese Elements II': 'JPNS 1002 (812)',
+    'Oral Intensive Japanese I': 'JPNS 1003 (811)',
+    'Kanji I': 'JPNS 1301 (811)',
+    'Special Topics I: Practical Japanese for Study Abroad Students': 'JPNS 2000 (811)',
+    'Oral Intensive Japanese II': 'JPNS 2003 (811)',
+    'The Japanese Writer in Focus': 'JPNS 2050 (811)',
+    'Kanji II': 'JPNS 2301 (811)',
+    'TUJ - Japanese Intermediate I': 'JPNS 2701 (812)',
+    'TUJ - Japanese Intermediate II': 'JPNS 2702 (812)',
+    'Special Topics in Japanese I: Introduction to Translating Japanese to/from English for Non-Native Speakers of Japanese': 'JPNS 3000 (750)',
+    'Advanced Japanese I': 'JPNS 3001 (811)',
+    'Advanced Japanese II': 'JPNS 3002 (811)',
+    'Advanced Japanese Writing': 'JPNS 3003 (811)',
+    'Special Topics in Japanese II: Kanji III': 'JPNS 3010 (811)',
+    'Japanese Advanced III': 'JPNS 4001 (811)',
+    'Japanese Advanced IV': 'JPNS 4002 (811)',
+    'Journalism and Society': 'JRN 1111 (750)',
+    'Journalism Research': 'JRN 2101 (811)',
+    'Magazine Article Writing': 'JRN 2396 (812)',
+    'Documentary Photography': 'JRN 3403 (811)',
+    'Experimental Journalism': 'JRN 3505 (811)',
+    'Gender and American Mass Media': 'JRN 3705 (811)',
+    'Newsroom Management': 'JRN 3708 (811)',
+    'Special Topics in Fitness: Cardiovascular Fitness for a Healthy Lifestyle': 'KINS 1001 (811)',
+    'Yoga I': 'KINS 1064 (811)',
+    'Klein First-Year Seminar': 'KLN 1001 (750)',
+    'Korean Elements I': 'KRN 1001 (811)',
+    'Education in the Global City': 'LAWU 0854 (811)',
+    'African Americans, Equality and the Law: Weapon or Tool?': 'LGLS 0803 (811)',
+    'Law and American Society': 'LGLS 0856 (811)',
+    'Professional Development for Liberal Arts Majors': 'CLA 1002 (811)',
+    'Special Topics in Liberal Arts: Entrepreneurship & Creativity': 'CLA 1010 (750)',
+    'Special Topics in Liberal Arts II: International Career Strategies': 'CLA 2020 (811)',
+    'Special Topics in Liberal Arts III: Technology in International Business': 'CLA 2030 (811)',
+    'Data Science': 'MIS 0855 (811)',
+    'Marketing Management': 'MKTG 2101 (812)',
+    "Basic Mathematics for Today's World": 'MATH 0701 (811)',
+    'Intermediate Algebra': 'MATH 0702 (811)',
+    'Math for a Digital World': 'MATH 0823 (811)',
+    'Mathematical Patterns': 'MATH 0824 (811)',
+    'College Algebra': 'MATH 1021 (812)',
+    'Precalculus': 'MATH 1022 (811)',
+    'Differential and Integral Calculus': 'MATH 1031 (811)',
+    'Calculus I': 'MATH 1041 (811)',
+    'The Future of Your TV': 'MSP 0821 (750)',
+    'Introduction to Media Analysis': 'MSP 1021 (750)',
+    'Introduction to Media Production': 'MSP 1701 (812)',
+    'Audio for Media': 'MSP 2751 (811)',
+    'Writing Workshop': 'MSP 3196 (811)',
+    'Genres of Media Production': 'MSP 3701 (811)',
+    'Producing and Directing': 'MSP 4701 (750)',
+    'Creative Scriptwriting': 'MSP 4796 (811)',
+    'World Musics & Cultures': 'MUST 0809 (750)',
+    'American Popular Music': 'MUST 1763 (811)',
+    'Philosophy of the Human': 'PHIL 0839 (811)',
+    'Exploring the Cosmos': 'PHYS 0834 (811)',
+    'The History & Significance of Race in America': 'POLS 0829 (811)',
+    'The Making of American Society: Melting Pot or Culture Wars?': 'POLS 0859 (811)',
+    'Development & Globalization': 'POLS 0862 (811)',
+    'War and Peace': 'POLS 0864 (811)',
+    'Foreign Governments and Politics': 'POLS 1201 (811)',
+    'International Politics': 'POLS 1301 (811)',
+    'Comparative Political Systems in Latin America': 'POLS 2231 (811)',
+    'Politics of the Global Economy': 'POLS 2321 (811)',
+    'Introduction to Political Philosophy': 'POLS 2496 (811)',
+    'Mideast Politics': 'POLS 3241 (811)',
+    'Special Topics: Research Preparation Seminar: Korean Politics': 'POLS 3520 (811)',
+    'Seminar in International Politics: Chinese Foreign Policy': 'POLS 4310 (811)',
+    'Workings of the Mind': 'PSY 0816 (811)',
+    'Brain Matters': 'PSY 0817 (811)',
+    'Human Sexuality': 'PSY 0818 (811)',
+    'Introduction to Psychology': 'PSY 1001 (812)',
+    'Careers in Psychology': 'PSY 1002 (811)',
+    'Statistics for Psychology': 'PSY 1003 (811)',
+    'Critical Thinking in Psychology': 'PSY 1004 (811)',
+    "Topics in Psychology I: What's Happening in Japan - From Foundation of Mental health to Career": 'PSY 1110 (811)',
+    'Foundations of Cognitive Psychology': 'PSY 2101 (811)',
+    'Foundations of Developmental Psychology': 'PSY 2301 (811)',
+    'Foundations of Behavioral Neuroscience': 'PSY 2501 (811)',
+    'Conducting Psychological Research': 'PSY 3096 (811)',
+    'Topics in Psychology: Gender Studies in Psychology': 'PSY 3620 (811)',
+    'Topics in Psychology: ADHD in the Cross-Cultural Context': 'PSY 3620 (812)',
+    'Capstone in Psychology: The Power of Belief': 'PSY 4696 (811)',
+    'Fundamentals of Personal Financial Planning': 'RMI 2501 (750)',
+    'Selected Topics in Sociology: Risk Culture': 'SOC 2130 (811)',
+    'Bilingual Communities': 'SPAN 0826 (811)',
+    'Basic I': 'SPAN 1001 (811)',
+    'Statistics in the News': 'STAT 0826 (750)',
+    'Statistical Business Analytics': 'STAT 2103 (811)',
+    'TUJ Bridge Seminar 1': 'TUJ 1001 (751)',
+    'Bridge Seminar 2: Academic Research': 'TUJ 1002 (812)',
+    'The Art of Acting': 'THTR 0825 (812)',
+    'Academic Bridge for International Students': 'UNVS 1003 (812)',
 
-}
+}//data for all courses Name to Code
 const timetableData = {
     'ACCT 2101 (811)': {
         subject: 'Accounting',
@@ -4008,28 +4010,33 @@ const timetableData = {
         prior: '',
         specialInfo: 'Notes: There are no prerequisites or co-requisites for this course. To take this course you must be an international student whose native language is not English. Contact Dr. Shawn Higgins (shawn.higgins@tuj.temple.edu) for permission to add.'
     }
-}//811-818, 750
-
-const times = [];//this is for all the time we have so far, to avoid time conflict, we need it to be here
-
+}//data for all the courses
+// TODO: xml
+// All the time we have so far, to avoid time conflict, we need it to be here
+const times = [];
+// Initializing the generate button, add event listener to it, so it can execute the following function
 document.getElementById("generate").addEventListener("click", generateTimetable);
 
+// Function for generating the timetable
 function generateTimetable() {
+    // The right click menu, so it can be removed when we generate the timetable
     if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
     }
+    // Set the hasMenu to false, so when we click it again, it will show the menu
     hasMenu = false;
+    // Options are for when there are some courses has the same course number, need to make it empty before generation
     const timetable = document.getElementById('options');
     timetable.innerHTML = '';
-    //options are for when there are some courses has the same course number, need to make it empty before generation
+    // The time quote is for attempting to delete the date&time, so it can be removed when we generate the timetable
     document.getElementById("timeqoute").innerHTML = "";
+    // Get the user input and covert it to only numbers or alphabets
     const userInput = document.getElementById("courseNumber").value;
     const courseNumber = userInput.replace(/\D/g, '');
     const courseName = userInput.replace(/\d/g, '');
-    //get the user Input then ignore all space or alpha
     console.log("Course number entered:", courseNumber);//print user input
-
-
+    // Start with the input only has numbers, so it will be a course number, and add specific info to it, then search
+    // it in the data, if it is in the data, append it to the allInfoArray.
     let department = ['ACCT', 'ADV', 'AMST', 'ANTH', 'ARTU', 'ARTH', 'ASST', 'BIOL', 'CHEM', 'CHI', 'CMST', 'CSI', 'CIS', 'ECON', 'EDUC', 'ENG', 'ENVS', 'EURO', 'FREN', 'GEOG', 'GEOL', 'GERM', 'GREK', 'HIST', 'HUMA', 'IDIS', 'ITAL', 'JAPN', 'LATN', 'LGBT', 'LING', 'MATH', 'MUSC', 'PHIL', 'PHYS', 'POLS', 'PORT', 'PSYC', 'RELG', 'RUSS', 'SOCI', 'SPAN', 'SUST', 'THEA', 'WGST'];
     let onlineOrIn = ["(811)", "(812)", "(813)", "(814)", "(815)", "(816)", "(817)", "(818)", "(819)", "(750)", "(751)"];
     let allInfoArray = []
@@ -4043,40 +4050,42 @@ function generateTimetable() {
 
             }
         }
-    //Try to find the course with the course number
-    if(courseName !== ''){
-    for(let i = 0; i < courseNameStrings.length; i++)
-    {
-        if (courseNameStrings[i].toLowerCase().includes(courseName.toLowerCase())) {
-            allInfoArray.push(courseNameToCode[courseNameStrings[i]]);
+    // Try to find the course with the alphabets, which is supposed to be a course name, then search it in the data,
+    // if it is in the data, append it to the allInfoArray.
+    if (courseName !== '') {
+        for (let i = 0; i < courseNameStrings.length; i++) {
+            if (courseNameStrings[i].toLowerCase().includes(courseName.toLowerCase())) {
+                allInfoArray.push(courseNameToCode[courseNameStrings[i]]);
+            }
         }
-    }}//try to find it with course name
-    console.log("allInfoArray is: " + allInfoArray.length);
+    }
+    console.log("allInfoArray is: " + allInfoArray.length);//print the length of the allInfoArray
+    //  if the allInfoArray is empty, means it's not found in data, display an error message
     if (allInfoArray.length === 0) {
         const timetableDiv = document.getElementById("notfound");
         timetableDiv.innerHTML = "<p>Timetable not found. Please enter a valid course number.</p>";
-        // If the timetable data is not found, display an error message
-    } else if (allInfoArray.length === 1) {
+    } else if (allInfoArray.length === 1) {//if There is only one course, print it
         const timetableDiv = document.getElementById("notfound");
         timetableDiv.innerHTML = "";
         printAllInfo(timetableData, allInfoArray[0]);
-        //if There is only one course, print it
-    } else {
+    } else {        //Let user select when there is more course
         for (let i = 0; i < allInfoArray.length; i++) {
             const timetableDiv = document.getElementById("notfound");
             timetableDiv.innerHTML = "";
             selectAllInfo(timetableData, allInfoArray[i]);
         }
-        //Let user select when there is more course
     }
 }
 
-//this is for print the course info on the timetable
+// Print the course info on the timetable
 function printAllInfo(timetableData, timetableInfo) {
+    // Create a new row for the course and define its attributes
     const newCourse = document.createElement('tr');
     newCourse.className = "course";
     newCourse.setAttribute('data-info', timetableInfo);
+    // Make the info has the all the info of the course
     timetableInfo = timetableData[timetableInfo];
+    // Push the time of the course to the times array and check if there is a time conflict
     times.push(timetableInfo.time)
     const result = sortAndCheckTimeConflicts(times);
     const conflict = document.getElementById('error');
@@ -4087,9 +4096,9 @@ function printAllInfo(timetableData, timetableInfo) {
     } else {
         conflict.innerHTML = '';
     }
-
+    // Append the new row to the timetable
     document.getElementById('timetable').appendChild(newCourse);
-
+    // Create new cells for the course name and set its attributes
     const timeTd = document.createElement('td');
     const timeTdM = document.createElement('td');
     const timeTdT = document.createElement('td');
@@ -4101,9 +4110,10 @@ function printAllInfo(timetableData, timetableInfo) {
     timeTdW.className = "W";
     timeTdTh.className = "Th";
     timeTdF.className = "F";
+    // The time info is like date and time, so we need to split it
     const date = timetableInfo.time.split(" ")[0];
     timeTd.innerHTML = `<p> ${timetableInfo.time.split(" ")[1]}</p>`
-    newCourse.appendChild(timeTd);
+    // Check the date and append the time info to the corresponding cell
     for (let i = 0; i < date.length; i++) {
         if (date[i] === 'M') {
             addInto(timeTdM, timetableInfo);
@@ -4119,11 +4129,14 @@ function printAllInfo(timetableData, timetableInfo) {
             }
         }
     }
+    // Append the cells to the new row
+    newCourse.appendChild(timeTd);
     newCourse.appendChild(timeTdM);
     newCourse.appendChild(timeTdT);
     newCourse.appendChild(timeTdW);
     newCourse.appendChild(timeTdTh);
     newCourse.appendChild(timeTdF);
+    // Put the new course in the right place based on sorted times
     for (let i = 0; i < result.sortedTimes.length; i++) {
         const timeOutAndSign = timetableInfo.time.split(" &")[0];
         if (timeOutAndSign === result.sortedTimes[i].toString()) {
@@ -4136,14 +4149,14 @@ function printAllInfo(timetableData, timetableInfo) {
             return;
         }
     }
-    //setCookie("newCourse", newCourse.innerHTML, 7);Cookie problem
+    //setCookie("newCourse", newCourse.innerHTML, 7);TODO: Cookie problem
 
 
 }
 
 //this is for function printAllInfo, it adds the necessary info to the child of timetable
 function addInto(timeTd, timetableInfo) {
-
+    // Check if the course has gened requirement and add all the info to the cell
     if (timetableInfo.gened === '') {
         timeTd.innerHTML = `<p> ${timetableInfo.courseName}</p>
                             <p> ${timetableInfo.courseCode}</p>
@@ -4163,23 +4176,31 @@ function addInto(timeTd, timetableInfo) {
 
 //this is for select when there are more than one course have the same courseNum
 function selectAllInfo(timetableData, timetableInfo) {
+    //create a button for each course, and add the info to the button
     const newButton = document.createElement('button');
     newButton.innerHTML = `<p> ${timetableData[timetableInfo].courseName}</p>
                            <p> ${timetableData[timetableInfo].time}</p>
                          <p>${timetableInfo}</p>`;
+    //set the className of the button to the courseNum
     newButton.className = timetableInfo;
-    newButton.addEventListener('click', selection.bind(newButton));
+    //append the button to the options
     const timetable = document.getElementById('options');
     timetable.appendChild(newButton);
+    //when click the button, it will call the function selection
+    newButton.addEventListener('click', selection.bind(newButton));
+
 }
 
 //for select clickListener
 function selection() {
+    //get the courseNum from the button and covert it to string, className is the courseNum.
     const courseInfo = this.className;
     const courseInfoString = courseInfo.toString();
+    //clear the options
     const options = document.getElementById('options');
     options.innerHTML = '';
-    console.log("You selected: " + courseInfoString);
+    console.log("You selected: " + courseInfoString);//print the courseNum
+    //call the function printAllInfo
     printAllInfo(timetableData, courseInfoString);
 
 
@@ -4187,7 +4208,6 @@ function selection() {
 
 //this is for sort time
 function sortAndCheckTimeConflicts(times) {
-
     // Convert input times to objects with day and time properties
     const dayAbbrevs = {"M": 0, "T": 1, "W": 2, "h": 3, "F": 4};
     const timeObjects = times.map(time => {
@@ -4215,50 +4235,57 @@ function sortAndCheckTimeConflicts(times) {
             //TODO: a bug will happen if the first one are not the same date, refer to days[0]
         }
     }
+    // Return sorted times and whether there is a conflict
     return {
         sortedTimes: timeObjects.map(time => `${time.days.map(day => Object.keys(dayAbbrevs).find(key => dayAbbrevs[key] === day)).join("")} ${Math.floor(time.start / 60).toString().padStart(1, "")}:${(time.start % 60).toString().padStart(2, "0")}-${Math.floor(time.end / 60).toString().padStart(2, "0")}:${(time.end % 60).toString().padStart(2, "0")}`),
         hasConflict
     };
 }
 
+// After this line, it's for the right click menu and zoom in function
 let hasMenu, hasZoomedIn = false;
 window.addEventListener("contextmenu", e => e.preventDefault());
-let table = document.getElementById("timetable");//it was working in html file, but now it's null
+let table = document.getElementById("timetable");
 
-// 监听鼠标右键按下事件
+// An event listener for the right click menu
 table.addEventListener("mousedown", function (e) {
-    // 如果是鼠标右键按下
+    // Set the target to the clicked element
     //TODO: when mouse move to here, change it to a hand
     const target = e.target;
-
-
+    // If the target has context and zoomed in is not applied
     if ((target.innerHTML.trim() !== "" && !hasZoomedIn)) {
-        // 创建一个 div 元素作为右键菜单
+        // Create a context menu and set class and id
         const contextMenu = document.createElement("div");
         contextMenu.className = "context-menu";
         contextMenu.id = "rightClickDelete";
-
-        // 创建菜单项
+        // Create a menu item and set innerHTML
         const menuItem = document.createElement("div");
         menuItem.innerHTML = `<p id = "deleteAll">Delete All</p>`;//<p id = "deleteThis">Delete This</p>
+        // Append the menu item to the context menu
         menuItem.children.item(0).addEventListener("click", function () {//TODO:鼠标移上去时闪烁，因为点到空白处不行
+            // if there is a menu, remove it and set hasMenu to false
             if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
             }
             hasMenu = false;
+            // If the target is not a table cell, loop to its parent until it's a table cell
             var parentElement = target.parentElement;
-            while (parentElement && parentElement.tagName !== "TR") {//whatever target is, find the parent of is which is tr so the whole line whould be deleted
+            while (parentElement && parentElement.tagName !== "TR") {
                 parentElement = parentElement.parentElement;
             }
+            // If the parent is a table cell, remove it and remove the time from the times array
             if (parentElement && parentElement.tagName === "TR") {
-                if (parentElement.id === "doNotRemove")//the first row is day&time, should not be removed
+                //the first row is day&time, should not be removed
+                if (parentElement.id === "doNotRemove")
                 {
                     const conflict = document.getElementById('timeqoute');
                     conflict.innerHTML = "“Time will not slow down when you were trying to delete it” – Developer";
                 } else {
+                    //remove the element
                     parentElement.remove();
                     const dataInfo = parentElement.getAttribute('data-info');
                     console.log(dataInfo);
+                    //remove the time from the times array
                     const time = timetableData[dataInfo].time.toString();
                     for (let i = 0; i < times.length; i++) {
                         if (time === times[i].toString()) {
@@ -4292,29 +4319,25 @@ table.addEventListener("mousedown", function (e) {
         //     }
         // });TODO: delete this
         if (hasMenu) {
+            // delete the menu if it exists when click on the same place
             if (document.getElementById("rightClickDelete") !== null) {
                 document.getElementById("rightClickDelete").remove();
             }
-            // 为了避免多次创建菜单，还需要在隐藏菜单时将菜单从 body 中移除
+            // set the hasMenu to false, so that the menu will be created when click on the same place
             hasMenu = false;
+
         } else {
             if (e.button === 2) {
-                // 获取鼠标右键按下的元素
-
-
-                // 将菜单项添加到菜单中
+                // get the position of the mouse
                 contextMenu.appendChild(menuItem);
-
-                // 将菜单添加到 body 中
+                // add the menu item to the menu
                 document.body.appendChild(contextMenu);
-
-                // 设置菜单的位置
+                //set the position of the menu
                 contextMenu.style.left = e.clientX + "px";
                 contextMenu.style.top = e.clientY + "px";
-
-                // 阻止默认的右键菜单弹出
+                //set the hasMenu to true, so that the menu will be deleted when click on the same place
                 hasMenu = true;
-                // 监听鼠标右键抬起事件，当抬起时隐藏菜单
+
             }
         }
 
@@ -4322,50 +4345,59 @@ table.addEventListener("mousedown", function (e) {
 
 
 });
-
-
-document.addEventListener("click", function (e){
+// An event listener for the zoom in function
+document.addEventListener("click", function (e) {
+    // Set the target to the clicked element
     const target = e.target;
-    if (target.innerHTML.trim() !== "" && !hasZoomedIn && !hasMenu)
-    {
+    // If the target has context and zoomed in is not applied and there is no menu
+    if (target.innerHTML.trim() !== "" && !hasZoomedIn && !hasMenu) {
         console.log("clicked");
+        // If the target is not a table cell, loop to its parent until it's a table cell
         var parentElement = target.parentElement;
-        while (parentElement && parentElement.tagName !== "TR") {//whatever target is, find the parent of is which is tr so the whole line whould be deleted
+        while (parentElement && parentElement.tagName !== "TR") {
             parentElement = parentElement.parentElement;
         }
         if (parentElement && parentElement.tagName === "TR") {
-            if (parentElement.id !== "doNotRemove") {//the first row is day&time
+            //the first row is day&time, should not be zoomed in
+            if (parentElement.id !== "doNotRemove") {
+                // get the data-info attribute of the parent element
                 let dataInfo = parentElement.getAttribute('data-info');
                 dataInfo = timetableData[dataInfo];
+                // set the all needed data to the zoom in table
                 const zoomInTable = document.createElement('table');
                 zoomInTable.className = "zoomInTable";
                 zoomInTable.id = "zoomInTable";
                 const zoomIn = document.createElement('tr');
                 zoomIn.className = "zoomIn";
                 const timeTd = document.createElement('td');
+                //add the time to the zoom in table
                 addInto(timeTd, dataInfo)
+                // append the time to the zoom in table
                 zoomIn.appendChild(timeTd);
                 zoomInTable.appendChild(zoomIn);
                 document.getElementById("timetableDiv").appendChild(zoomInTable);
                 //blurEverything("zoomInTable");//TODO
+                // set the hasZoomedIn to true, so that the zoom in table will be deleted when click on the same place
                 hasZoomedIn = true;
             }
         }
-    }
-    else{
+    } else {
+        //if the target is not a table cell and there is a zoom in table, delete the zoom in table
         if (document.getElementById("zoomInTable") !== null) {
             document.getElementById("zoomInTable").remove();
         }
         hasZoomedIn = false;
         removeBlur();
     }
+    //if the target is a table cell and there is a zoom in table, delete the zoom in table
     if (document.getElementById("rightClickDelete") !== null) {
         document.getElementById("rightClickDelete").remove();
     }
     hasMenu = false;
 });
-
+// The save as pdf function
 document.getElementById("saveAsPDF").addEventListener("click", saveAsPDF);
+
 const specialElementHandlers = {
     '.no-saveAsPDF': function (element, renderer) {
         return true
@@ -4400,6 +4432,7 @@ function saveAsPDF() {
 //TODO:Styling
 
 }
+
 function blurEverything(exception) {
     // Get all the immediate child elements of the body element except the exception
     const elements = document.querySelectorAll(`body > :not(${exception}):not(script):not(style)`);

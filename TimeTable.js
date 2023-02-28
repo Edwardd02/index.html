@@ -357,7 +357,6 @@ table.addEventListener("mousedown", function (e) {
         }
 
     }
-    console.log("Time Table sorter: :" + result.sortedTimes);
 
 });
 // An event listener for the zoom in function

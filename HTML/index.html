@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello, TUJ!</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/13/13706.png">
+</head>
+<body>
+<div>
+    <h1 id="title">
+        <a class="link" href="index.html">
+
+            TUJ Coding Club
+
+        </a>
+    </h1>
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="#">Resources</a>
+                <div class="dropdown-content">
+                    <a href="https://automatetheboringstuff.com/">Python</a>
+                    <a href="http://www.tuj.ac.jp">Java</a>
+                    <a href="http://www.tuj.ac.jp">C Programming</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Tools</a>
+                <div class="dropdown-content">
+                    <a href="timetable.html">Timetable Maker</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Services</a>
+                <div class="dropdown-content">
+                    <a href="rateprof.html">Rate Your Professor</a>
+                    <a href="#">Undefined</a>
+                    <a href="#">Undefined</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Contact</a>
+                <div class="dropdown-content">
+                    <a href="https://www.tuj.ac.jp/ug/student-services/student-engagement/clubs-organizations">Contact
+                        us</a>
+                    <a href="bugs.html">Report bugs</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+
+    <center>
+        <img src="https://www.tuj.ac.jp/sites/japan/files/styles/tu_is_image_embedded/public/images_embedded/coding%20club%20logo_1.png?itok=Cz0y1tgL"
+             height="50%" width="80%" alt="coding club logo">
+    </center>
+
+
+</div>
+<script>
+    // 获取下拉菜单和body元素
+    var dropdowns = document.getElementsByClassName("dropdown");
+    var body = document.body;
+
+    // 给每个下拉菜单添加鼠标移入事件处理函数
+    for (var i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].addEventListener("mouseenter", function() {
+            // 将body元素添加毛玻璃效果
+            body.classList.add("blur");
+            // 将当前下拉菜单的直接父元素添加高斯模糊效果
+            this.parentNode.classList.add("blur");
+        });
+
+        // 给每个下拉菜单添加鼠标移出事件处理函数
+        dropdowns[i].addEventListener("mouseleave", function() {
+            // 将body元素的毛玻璃效果移除
+            body.classList.remove("blur");
+            // 将当前下拉菜单的直接父元素的高斯模糊效果移除
+            this.parentNode.classList.remove("blur");
+        });
+    }
+</script>
+</body>
+
+
+<footer>
+    <p>Copyright Ⓒ 2023 TUJ CODING All rights reserved.</p>
+</footer>
+
+</html>
